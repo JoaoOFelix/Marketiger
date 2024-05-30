@@ -1,3 +1,15 @@
+<?php
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+if (!isset($_SESSION['id'])) {
+    die("Você não está logado");
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -50,6 +62,11 @@
             <div>
                 <label for="inputTamanho">Tamanho do produto</label>
                 <input type="text" name="tamanho" class="form-control" id="inputTamanho">
+            </div>
+
+            <div>
+                <label for="inputLink">Link da imagem</label>
+                <input type="text" name="img" class="form-control" id="inputLink">
             </div>
 
             <div>

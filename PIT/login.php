@@ -69,14 +69,7 @@
 </div>
 
 <?php
-
-
 }
-
-//executar o comando
-//$resultado = $conn->query($sql);
-
-
 ?>
 
 </body>

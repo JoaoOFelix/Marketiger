@@ -1,8 +1,13 @@
 <?php
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
+
+if (!isset($_SESSION['id'])) {
+    die("Você não está logado");
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -44,6 +49,7 @@ if(!isset($_SESSION)){
     $descricao = $_POST['descricao'];
     $material = $_POST['material'];
     $tamanho = $_POST['tamanho'];
+    $imagem = $_POST['img'];
 
 
     $anunciante = $_SESSION['usuario'];
@@ -62,7 +68,7 @@ if(!isset($_SESSION)){
 
 
         //Criar o comando
-        $sql = "INSERT INTO produtos VALUES(NULL, '$id_usuario', '$anunciante', '$produto', '$descricao', '$material', '$tamanho')";
+        $sql = "INSERT INTO produtos VALUES(NULL, '$id_usuario', '$anunciante', '$produto', '$descricao', '$material', '$tamanho', '$imagem')";
 
         //executar o comando
         $resultado = $conn->query($sql);

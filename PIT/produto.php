@@ -4,6 +4,11 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
+if (!isset($_SESSION['id'])) {
+    die("Você não está logado");
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -60,6 +65,11 @@ if (!isset($_SESSION)) {
             height: 400px;
             margin-top: 100px;
 
+        }
+
+        section>img {
+            width: 500px;
+            height: 500px;
         }
 
         main>.imagem {
@@ -122,20 +132,29 @@ if (!isset($_SESSION)) {
     <header class="cabecalho">
 
         <div>
-            <h1>LOGO</h1>
+            <h1><a href="principal.php">LOGO</a></h1>
         </div>
 
+        <form action="busca.php" method="GET" class="row g-2">
+            <div class="col-auto">
+                <input type="text" name="busca" class="form-control" id="input-busca" placeholder="Bola de...">
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+            </div>
+        </form>
 
         <div class="login">
             <a class="btn btn-danger" href="cadastroproduto.php">Anunciar</a>
-            <a href="principal.php" class="btn btn-primary">Menu</a>
+            <a href="index.php" class="btn btn-primary">Sair</a>
         </div>
 
     </header>
 
     <main>
         <section class="text-center">
-            <img src="https://http2.mlstatic.com/D_NQ_NP_851120-MLB70085510807_062023-O.webp" class="rounded" alt="...">
+            <img src="<?php echo $item['link-img'] ?>" class="rounded" alt="...">
         </section>
 
         <section>
