@@ -1,3 +1,15 @@
+<?php
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+if (!isset($_SESSION['id'])) {
+    die("Você não está logado");
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -33,23 +45,28 @@
         <div id="principal">
             <h1 class="title">Cadastrar Produto</h1>
             <div>
-                <label for="inputNome">Nome do Produto</label>
+                <label for="inputNome">Nome do Produto(+10)</label>
                 <input type="text" name="produto" class="form-control" id="inputNome" required>
             </div>
 
             <div>
-                <label for="inputDescricao">Descrição do produto</label>
+                <label for="inputDescricao">Descrição do produto(+5)</label>
                 <textarea class="form-control" name="descricao" id="inputDescricao" rows="3"></textarea>
             </div>
 
             <div>
-                <label for="inputMaterial">Material do produto</label>
+                <label for="inputMaterial">Material do produto(+5)</label>
                 <input type="text" name="material" class="form-control" id="inputMaterial">
             </div>
 
             <div>
-                <label for="inputTamanho">Tamanho do produto</label>
+                <label for="inputTamanho">Tamanho do produto(+5)</label>
                 <input type="text" name="tamanho" class="form-control" id="inputTamanho">
+            </div>
+
+            <div>
+                <label for="inputLink">Link da imagem (+10)</label>
+                <input type="text" name="img" class="form-control" id="inputLink">
             </div>
 
             <div>

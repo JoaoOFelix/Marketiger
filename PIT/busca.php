@@ -8,6 +8,7 @@ if (!isset($_SESSION['id'])) {
     die("Você não está logado");
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,7 +25,6 @@ if (!isset($_SESSION['id'])) {
 
             font-family: "Rajdhani", sans-serif;
             font-weight: 600;
-            height: 300vh;
         }
 
         .cabecalho {
@@ -57,20 +57,19 @@ if (!isset($_SESSION['id'])) {
             height: 10px;
         }
 
-        .mais-novos {
-            width: 100%;
-            margin: 0 auto;
+        .resultados {
+            width: 70%;
+            margin: 80px auto;
             background-color: #F7F7F8;
             padding: 15px;
         }
 
         .produtos {
-            display: flex;
-            overflow-x: scroll;
+            display: grid;
             white-space: nowrap;
-
-            /* Chrome, Edge and Safari */
-
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            
+            justify-content: start;
         }
 
         .cartao {
@@ -141,13 +140,6 @@ if (!isset($_SESSION['id'])) {
             margin-bottom: 100px !important;
         }
 
-        .carrossel {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
         #busca {
             display: flex;
             align-items: center;
@@ -175,12 +167,10 @@ if (!isset($_SESSION['id'])) {
     $id_usuario = $_SESSION['id'];
     $usuario = $_SESSION['usuario'];
 
-    $busca;
+    $busca = $_GET['busca'];
 
-    //Busca dos 3 últimos
-    $sqlRecentes = "SELECT * FROM produtos ORDER BY id DESC";
-    $resultadoRecentes = $conn->query($sqlRecentes);
-
+    $sql = "SELECT * FROM `produtos` WHERE `produto` LIKE '%$busca%' ORDER BY id DESC";
+    $resultado = $conn->query($sql);
 
     ?>
 
@@ -190,9 +180,9 @@ if (!isset($_SESSION['id'])) {
             <h1><a href="principal.php">LOGO</a></h1>
         </div>
 
-        <form action="busca.php" method="GET" class="row g-2" id="busca">
+        <form action="busca.php" method="get" class="row g-2" id="busca">
             <div class="col-auto">
-                <input type="text" name="busca" class="form-control" id="input-busca" placeholder="Bola de...">
+                <input type="text" name="busca" class="form-control" id="input-busca" placeholder="Bola de..." value="<?php echo $busca ?>">
             </div>
 
             <div class="col-auto">
@@ -208,41 +198,24 @@ if (!isset($_SESSION['id'])) {
     </header>
 
 
-
-    <section class="mais-novos">
-
-        <div class="titulo">
-            <h2>Mais Novos</h2>
+    <section class="resultados">
+        <div>
+            <h2>Resultados (<?php echo $resultado->num_rows ?>) </h2>
         </div>
-
         <div class="produtos">
-
             <?php
 
-            $sql = "SELECT * FROM produtos ORDER BY id DESC";
-            $resultado = $conn->query($sql);
-
             if ($resultado->num_rows > 0) {
-                $i = 1;
-                // Iterar sobre os resultados e exibi-los
+
                 while ($produto = $resultado->fetch_assoc()) {
-
             ?>
-
                     <div class="card m-3">
 
                         <img src="<?php echo $produto['link-img'] ?>" class="card-img-top" alt="produto">
 
                         <div class="card-body">
 
-                            <h5 class="card-title"><?php echo $produto['produto'] ?> <?php
-                                    if ($i <= 3) {
-                                    ?>
-                                    <span class="badge text-bg-danger">Novo</span>
-                                <?php
-                                    }
-                                ?>
-                            </h5>
+                            <h5 class="card-title"><?php echo $produto['produto'] ?></h5>
 
                             <p class="card-text"><?php echo $produto['descricao'] ?></p>
 
@@ -252,7 +225,6 @@ if (!isset($_SESSION['id'])) {
 
             <?php
 
-                    $i++;
                 }
             } else {
                 echo "Nenhum produto encontrado.";
@@ -260,19 +232,9 @@ if (!isset($_SESSION['id'])) {
             ?>
         </div>
 
-
     </section>
 
 
-    <section class="carrossel">
-
-        <div class="titulo">
-            <h2>Recomendações</h2>
-        </div>
-
-
-
-    </section>
 
 
 </body>

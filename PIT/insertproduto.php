@@ -1,8 +1,13 @@
 <?php
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
+
+if (!isset($_SESSION['id'])) {
+    die("Você não está logado");
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -44,15 +49,37 @@ if(!isset($_SESSION)){
     $descricao = $_POST['descricao'];
     $material = $_POST['material'];
     $tamanho = $_POST['tamanho'];
+    $imagem = $_POST['img'];
 
 
     $anunciante = $_SESSION['usuario'];
     $id_usuario = $_SESSION['id'];
 
+
+    $confiabilidade = 0;
+  
+   
+    if(!empty($produto)){
+        $confiabilidade += 10;
+    }
+    if(!empty($descricao)){
+        $confiabilidade += 5;
+    }
+    if(!empty($material)){
+        $confiabilidade += 5;
+    }
+    if(!empty($tamanho)){
+        $confiabilidade += 5;
+    }
+    if(!empty($imagem)){
+        $confiabilidade += 10;
+    }
+
+
     
    
     
- if (empty($produto) || empty($descricao) || empty($material) || empty($tamanho)):
+ if (empty($produto)):
     ?>
         <div class="alert alert-warning" role="alert">
             Dados nao podem ficar vazios!
@@ -62,7 +89,7 @@ if(!isset($_SESSION)){
 
 
         //Criar o comando
-        $sql = "INSERT INTO produtos VALUES(NULL, '$id_usuario', '$anunciante', '$produto', '$descricao', '$material', '$tamanho')";
+        $sql = "INSERT INTO produtos VALUES(NULL, '$id_usuario', '$anunciante', '$produto', '$descricao', '$material', '$tamanho', '$imagem', '$confiabilidade')";
 
         //executar o comando
         $resultado = $conn->query($sql);
