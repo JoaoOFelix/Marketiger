@@ -1,0 +1,240 @@
+#principal {
+    background-color: #f1f1f1;
+    width: 50%;
+    margin: 30px auto;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.titulo {
+    margin-bottom: 30px;
+}
+
+.titulo>h2>b {
+    text-transform: uppercase;
+}
+
+#principal>.titulo>h2 {
+    text-align: center;
+}
+
+.formulario {
+
+    width: 70%;
+}
+
+.formulario>form>div {
+    display: grid;
+    gap: 9px;
+}
+
+.formulario .botoes {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formulario .botoes>* {
+    width: 120px;
+}
+
+
+/* --------------------- */
+
+.resultados {
+    width: 70%;
+    margin: 20px auto;
+    background-color: #F7F7F8;
+    padding: 15px;
+}
+
+.produtos {
+    display: grid;
+    white-space: nowrap;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    justify-content: start;
+}
+
+.card {
+    width: 250px;
+    height: 400px;
+    flex: 0 0 auto;
+    transition: 0.1s;
+    overflow: hidden;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.26);
+    
+}
+
+picture {
+    height: 62%;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.14);
+    /* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); */
+    /* box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16); */
+}
+
+.card img{
+    transition: 0.2s;
+}
+
+.card:hover img{
+    scale: 110%;
+}
+
+.card-img-top {
+    height: 100%;
+    width: 100%;
+}
+
+.card p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 21%;
+}
+
+.cartao>div {
+    text-align: center;
+}
+
+.cartao>.bg-cartao {
+    background-image: url("https://http2.mlstatic.com/D_NQ_NP_851120-MLB70085510807_062023-O.webp");
+    width: 100%;
+    height: 50%;
+    z-index: 0;
+    background-size: cover;
+}
+
+.cartao>div>a {
+    background-color: #ff8b38;
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all .2s;
+}
+
+.cartao>div>a:hover {
+    color: white;
+    background-color: #E17B33;
+}
+
+.ordenar {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.selecionaOrdem {
+    background-color: #0d6efd;
+    color: #fff;
+}
+.selecionaOrdem:hover {
+    background-color: hsl(216, 98%, 38%);
+    color: #fff;
+}
+/* -----------------------------------------------comentarios----------------------------------------------- */
+.comentarios {
+    display: flex;
+    width: 80%;
+    margin: 80px auto;
+    flex-direction: column;
+}
+
+.comentario {
+    display: grid;
+}
+
+.div-com{
+    display: grid;
+    gap: 5px;
+    grid-template-rows: 1fr 1fr;
+}
+
+.perfil-comentario>h4 {
+    font-weight: bolder;
+    align-self: center;
+    margin: 0;
+}
+.perfil-comentario {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.div-com>p {
+    font-weight: 500;
+}
+
+.foto-comentario {
+    height: 40px;
+    width: 40px !important;
+    background-color: #0d6efd;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    overflow: hidden;
+    transition: .6s;
+    border: 1px solid black;
+}
+.foto-comentario:hover {
+    background-size: 130%;
+}
+
+.foto-comentario>img {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.btn-excluir{
+    background-color: transparent;
+    border: none;
+}
+
+.btn-excluir svg {
+    height: 25px;
+    transition: .15s;
+}
+
+.btn-excluir svg:hover {
+    fill: red;
+}
+
+.texto-comentario {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 500;
+}
+/* ------------------------------ */
+
+.foto-perfil {
+    aspect-ratio: 1 / 1;
+    max-width: 400px;
+    max-height: 400px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 360px;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.foto-perfil>img {
+    width: 100%;
+    height: 100%;
+}
+
+.div-com a {
+    width: fit-content;
+}
+
+
+

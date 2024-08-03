@@ -1,0 +1,73 @@
+main {
+
+    width: 80%;
+    height: 600px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-evenly;
+}
+
+section {
+
+    width: 500px;
+    height: 400px;
+    margin-top: 100px;
+
+}
+
+section>img {
+    width: 500px;
+    height: 500px;
+}
+
+main>.imagem {
+    background-image: url("https://http2.mlstatic.com/D_NQ_NP_851120-MLB70085510807_062023-O.webp");
+
+    border: 0px black solid;
+}
+
+section h1 {
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 2.6em;
+}
+
+section p {
+    font-weight: 400;
+    font-size: 1.5em;
+}
+
+section span {
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+/* ---------------------- */
+
+.confiabilidade {
+    
+    margin-bottom: 30px;
+}
+
+
+.confiabilidade p {
+    text-align: center;
+    width: 200px;
+}
+
+.progressbar-text{
+    font-size: 1.5rem !important;
+    top: -50px !important; 
+}
+
+.progressbar-text {
+    margin: 0px;
+    transform: translateY(50%) !important;
+    color: rgb(21, 255, 0);
+    bottom: -10px;
+    justify-self: center;
+    position: relative !important;
+    height: fit-content;
+    width: fit-content;
+    left: 42% !important;
+}

@@ -1,0 +1,49 @@
+#principal {
+    background-color: #f1f1f1;
+    width: 50%;
+    margin: 30px auto;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.titulo {
+    margin-bottom: 30px;
+}
+
+#principal>.titulo>h2 {
+    text-align: center;
+}
+
+.formulario {
+
+    width: 70%;
+}
+
+.formulario>form>div {
+    display: grid;
+    gap: 9px;
+}
+
+.formulario .botoes {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formulario .botoes>* {
+    width: 120px;
+}
+
+.botoes>* {
+    background-color: #AAD7D9;
+    border: none;
+    color: inherit;
+}
+
+.botoes>*:hover {
+    background-color: hsl(183, 38%, 60%)
+}

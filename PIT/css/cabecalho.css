@@ -1,0 +1,92 @@
+/* Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Dm-sans */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* font-family: "Poppins", sans-serif; */
+    font-family: "DM Sans", sans-serif;
+    color: #646161;
+    background-color: #FBF9F1;
+    font-weight: 300;
+}
+
+.cabecalho {
+    background-color: #92C7CF;
+    padding: 2vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+
+}
+
+#input-busca {
+    border-radius: 90px;
+    border: none;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+    color: inherit;
+}
+
+.alinha-busca {
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    border: none;
+    color: white;
+    font-weight: 200;
+}
+
+.btn-sair>a{
+    transition: .1s ease-out;
+}
+
+.btn-sair>a:hover {
+    background-color: rgb(255, 32, 32) !important;
+    color: white;
+}
+
+/* Apenas teste */
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+#container {
+    width: 200px;
+    height: 100px;
+}
+
+.infos {
+    position: relative;
+}
+
+#botaoperfil {
+    padding: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(46, 46, 46, 0.25);
+}
+#botaoperfil>img {
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    aspect-ratio: 1/1;
+}

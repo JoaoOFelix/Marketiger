@@ -1,14 +1,13 @@
 <?php
+include('conexao.php');
 
 if (!isset($_SESSION)) {
     session_start();
 }
 
 if (!isset($_SESSION['id'])) {
-    die("Você não está logado");
+    die("Você não está logado.<p><a href='index.php'>Logar</a></p>");
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,100 +17,13 @@ if (!isset($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Produto</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
-        body {
-            font-family: "Rajdhani", sans-serif;
-            font-weight: 600;
-            height: 130vh;
-
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            background-color: lightgrey;
-        }
-
-        .cabecalho {
-            background-color: #ff8b38;
-            padding: 2vh;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .login {
-            width: 40%;
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            gap: 10px;
-
-        }
-
-        main {
-
-            width: 80%;
-            height: 600px;
-            display: flex;
-            margin: 0 auto;
-            justify-content: space-evenly;
-        }
-
-        section {
-
-            width: 500px;
-            height: 400px;
-            margin-top: 100px;
-
-        }
-
-        section>img {
-            width: 500px;
-            height: 500px;
-        }
-
-        main>.imagem {
-            background-image: url("https://http2.mlstatic.com/D_NQ_NP_851120-MLB70085510807_062023-O.webp");
-
-            border: 0px black solid;
-        }
-
-        section h1 {
-            font-weight: bolder;
-            text-transform: uppercase;
-            font-size: 2.6em;
-        }
-
-        section p {
-            font-weight: 400;
-            font-size: 1.5em;
-        }
-
-        section span {
-            font-weight: 700;
-            font-size: 1.2em;
-        }
-    </style>
+    <link rel="stylesheet" href="css/produto.css">
+    <link rel="stylesheet" href="css/cabecalho.css">
 </head>
 
 <body>
-
     <?php
-    //dados de conexao
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "marketeste";
-
-    //Conectar ao banco de dados
-    try {
-        $conn = new mysqli($hostname, $username, $password, $database);
-    } catch (Exception $e) {
-        die("Erro ao conectar:" . $e->getMessage());
-    }
-
     $id_usuario = $_SESSION['id'];
 
     if (isset($_GET['id'])) {
@@ -125,46 +37,30 @@ if (!isset($_SESSION['id'])) {
     $resultado = $conn->query($sql);
 
     $item = $resultado->fetch_assoc();;
-
     ?>
 
 
-    <header class="cabecalho">
-
-        <div>
-            <h1><a href="principal.php">LOGO</a></h1>
-        </div>
-
-        <form action="busca.php" method="GET" class="row g-2">
-            <div class="col-auto">
-                <input type="text" name="busca" class="form-control" id="input-busca" placeholder="Bola de...">
-            </div>
-
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">Buscar</button>
-            </div>
-        </form>
-
-        <div class="login">
-            <a class="btn btn-danger" href="cadastroproduto.php">Anunciar</a>
-            <a href="index.php" class="btn btn-primary">Sair</a>
-        </div>
-
-    </header>
+    <!-- Cabeçalho -->
+    <?php include('header.php') ?>
 
     <main>
         <section class="text-center">
             <img src="<?php echo $item['link-img'] ?>" class="rounded" alt="...">
         </section>
 
-        <section>
-            <h1>
-                <?php echo $item['produto'] ?>
-            </h1> <br>
+        <section class="infos">
+            <div>
+                <h1>
+                    <?php echo $item['produto'] ?>
+                </h1>
+            </div>
 
             <p>
                 <?php echo $item['descricao'] ?>
             </p> <br>
+
+            
+            
 
             <span>
                 Material: <?php echo $item['material'] ?>
@@ -175,16 +71,60 @@ if (!isset($_SESSION['id'])) {
             </span><br>
 
             <span>
-                Confiabilidade: <?php echo $item['confiabilidade'] ?>
+                Condição do produto: <?php echo $item['condicao'] ?>
             </span><br>
 
+            <div class="confiabilidade">
+                <div>
+                    <p>Confiabilidade</p>
+                </div>
+                <div id="container"></div>
+            </div>
+
             <span>
-                Anunciante: <?php echo $item['anunciante'] ?>
+                Anunciante: <a href="perfil.php?id_perfil=<?php echo $item['id_usuario'] ?>"><?php echo $item['anunciante'] ?> </a> 
             </span>
         </section>
+        
     </main>
-
+    
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- Script barra de progresso -->
+<!-- https://stackoverflow.com/questions/42477756/build-semi-circle-progress-bar-with-round-corners-and-shadow-in-java-script-and -->
+<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js"></script>
+<script>
+    var bar = new ProgressBar.SemiCircle(container, {
+        strokeWidth: 5,
+        color: '#15ff00',
+        trailColor: '#eee',
+        trailWidth: 5,
+        easing: 'easeInOut',
+        duration: 2400,
+        svgStyle: null,
+        text: {
+            value: '',
+            alignToBottom: false
+        },
+
+        // Set default step function for all animate calls
+        step: (state, bar) => {
+            bar.path.setAttribute('stroke', state.color);
+            var value = Math.round(bar.value() * 100);
+            if (value === 0) {
+                bar.setText('');
+            } else {
+                bar.setText(value + "%");
+            }
+
+            bar.text.style.color = state.color;
+        }
+    });
+
+    bar.text.style.fontSize = '3rem';
+
+    bar.animate(<?php echo $item['confiabilidade']/100 ?>); // Number from 0.0 to 1.0
+</script>
 
 </html>

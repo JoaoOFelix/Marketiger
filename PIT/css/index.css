@@ -1,0 +1,68 @@
+/* Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Dm-sans */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #FBF9F1;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #646161;
+}
+
+.title {
+    margin-bottom: 60px;
+}
+
+
+#principal {
+    background-color: #AAD7D9;
+    padding: 50px 90px;
+    border-radius: 5px;
+}
+
+#principal>div>input {
+    min-width: 300px;
+    border-radius: 90px;
+    border: none;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+    color: inherit;
+}
+
+#principal>div>label {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+}
+
+#principal>div>* {
+    margin: 6px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.btn {
+    width: 131px;
+    background-color: #AAD7D9;
+    border: none;
+    color: inherit;
+}
+
+.btn:hover {
+    background-color: hsl(183, 38%, 60%)
+}

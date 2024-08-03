@@ -1,5 +1,6 @@
 <?php
 
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -12,13 +13,15 @@ if (!isset($_SESSION['id'])) {
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Cadastrar Produto</title>
     <style type="text/css">
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
         body {
             margin: 30px;
             font-family: "Rajdhani", sans-serif;
@@ -38,6 +41,7 @@ if (!isset($_SESSION['id'])) {
         }
     </style>
 </head>
+
 <body>
 
     <form action="insertproduto.php" method="post" class="needs-validation" novalidate>
@@ -45,23 +49,47 @@ if (!isset($_SESSION['id'])) {
         <div id="principal">
             <h1 class="title">Cadastrar Produto</h1>
             <div>
-                <label for="inputNome">Nome do Produto(+10)</label>
+                <label for="inputNome">Nome do Produto (+5)</label>
                 <input type="text" name="produto" class="form-control" id="inputNome" required>
             </div>
 
             <div>
-                <label for="inputDescricao">Descrição do produto(+5)</label>
+                <label for="inputDescricao">Descrição do produto (+5)</label>
                 <textarea class="form-control" name="descricao" id="inputDescricao" rows="3"></textarea>
             </div>
 
             <div>
-                <label for="inputMaterial">Material do produto(+5)</label>
+                <label for="inputCategoria">Categoria (+5)</label>
+                <select name="categoria" class="form-select" id="inputCategoria">
+                    <option selected></option>
+                    <option disabled>Selecione a categoria do produto</option>
+                    <option value="action figure">Action Figure</option>
+                    <option value="esportivo">Esportivo</option>
+                    <option value="quadrinhos">Quadrinhos</option>
+                    <option value="cards">Cards</option>
+                    <option value="funko">Funko</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="inputMaterial">Material do produto (+3)</label>
                 <input type="text" name="material" class="form-control" id="inputMaterial">
             </div>
 
             <div>
-                <label for="inputTamanho">Tamanho do produto(+5)</label>
+                <label for="inputTamanho">Tamanho do produto (+3)</label>
                 <input type="text" name="tamanho" class="form-control" id="inputTamanho">
+            </div>
+
+            <div>
+                <label for="inputCondicao">Condição (+5)</label>
+                <select name="condicao" class="form-select" id="inputCondicao">
+                    <option selected></option>
+                    <option disabled>Selecione a condição do produto</option>
+                    <option value="novo">Novo</option>
+                    <option value="usado">Usado</option>
+                    <option value="lacrado">Lacrado</option>
+                </select>
             </div>
 
             <div>
@@ -78,26 +106,23 @@ if (!isset($_SESSION['id'])) {
     </form>
 </body>
 <script>
-
     function validacaoForm() {
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
 
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
 
-      form.classList.add('was-validated')
-    }, false)
-    })
+                form.classList.add('was-validated')
+            }, false)
+        })
 
     }
-
 </script>
-
 </html>

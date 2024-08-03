@@ -1,5 +1,7 @@
 <?php
 
+include('conexao.php');
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -31,24 +33,13 @@ if (!isset($_SESSION['id'])) {
 <body>
    
 <?php
-    //dados de conexao
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "marketeste";
-
-    //Conectar ao banco de dados
-    try {
-        $conn = new mysqli($hostname, $username, $password, $database);
-    } catch (Exception $e) {
-        die("Erro ao conectar:" . $e->getMessage());
-    }
-
     //recebendo variaveis do formulario
     $produto = $_POST['produto'];
     $descricao = $_POST['descricao'];
+    $categoria = $_POST['categoria'];
     $material = $_POST['material'];
     $tamanho = $_POST['tamanho'];
+    $condicao = $_POST['condicao'];
     $imagem = $_POST['img'];
 
 
@@ -60,15 +51,21 @@ if (!isset($_SESSION['id'])) {
   
    
     if(!empty($produto)){
-        $confiabilidade += 10;
+        $confiabilidade += 5;
     }
     if(!empty($descricao)){
         $confiabilidade += 5;
     }
-    if(!empty($material)){
+    if(!empty($categoria)){
         $confiabilidade += 5;
     }
+    if(!empty($material)){
+        $confiabilidade += 3;
+    }
     if(!empty($tamanho)){
+        $confiabilidade += 3;
+    }
+    if(!empty($condicao)){
         $confiabilidade += 5;
     }
     if(!empty($imagem)){
@@ -76,8 +73,6 @@ if (!isset($_SESSION['id'])) {
     }
 
 
-    
-   
     
  if (empty($produto)):
     ?>
@@ -89,7 +84,18 @@ if (!isset($_SESSION['id'])) {
 
 
         //Criar o comando
-        $sql = "INSERT INTO produtos VALUES(NULL, '$id_usuario', '$anunciante', '$produto', '$descricao', '$material', '$tamanho', '$imagem', '$confiabilidade')";
+        $sql = "INSERT INTO produtos VALUES(
+            NULL,
+            '$id_usuario',
+            '$anunciante',
+            '$confiabilidade',
+            '$produto',
+            '$descricao',
+            '$categoria',
+            '$material',
+            '$tamanho',
+            '$condicao',
+            '$imagem')";
 
         //executar o comando
         $resultado = $conn->query($sql);

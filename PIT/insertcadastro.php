@@ -1,3 +1,16 @@
+<?php
+include('conexao.php');
+
+
+//recebendo variaveis do formulario
+$user = $_POST['usuario'];
+$email = $_POST['email'];
+$telefone = $_POST['telefone'];
+$senha = $_POST['senha'];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,24 +30,7 @@
 
 <body>
     <?php
-    //dados de conexao
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "marketeste";
-
-    //Conectar ao banco de dados
-    try {
-        $conn = new mysqli($hostname, $username, $password, $database);
-    } catch (Exception $e) {
-        die("Erro ao conectar:" . $e->getMessage());
-    }
-
-    //recebendo variaveis do formulario
-    $user = $_POST['usuario'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $senha = $_POST['senha'];
+    
    
 
     if (empty($user) || empty($email) || empty($telefone) || empty($senha)):
@@ -49,7 +45,7 @@
         //Criar o comando
         $sqlSelect = "SELECT * FROM cadastro WHERE usuario = '$user'";
 
-        $sqlInsert = "INSERT INTO cadastro VALUES(NULL, '$user', '$email', '$telefone', '$senha')";
+        $sqlInsert = "INSERT INTO cadastro VALUES(NULL, '$user', '$email', '$telefone', '$senha', NULL)";
 
         
 
