@@ -2,7 +2,7 @@
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $database = "marketeste";
+    $database = "marketiger";
 
     //Conectar ao banco de dados
     try {

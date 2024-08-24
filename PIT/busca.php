@@ -4,26 +4,11 @@ include('conexao.php');
 if (!isset($_SESSION)) {
     session_start();
 }
+
 if (!isset($_SESSION['id'])) {
     die("Você não está logado.<p><a href='index.php'>Logar</a></p>");
 }
-?>
-<!DOCTYPE html>
-<html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Market Tiger</title>
-    <link rel="stylesheet" href="css/busca.css">
-    <link rel="stylesheet" href="css/cabecalho.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-</head>
-
-<body>
-<?php
 $id_usuario = $_SESSION['id'];
 $usuario = $_SESSION['usuario'];
 
@@ -39,6 +24,22 @@ if(!isset($_SESSION['ordem'])){
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Market Tiger</title>
+    <link rel="stylesheet" href="css/busca.css">
+    <link rel="stylesheet" href="css/cabecalho.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+
+<body>
 
     <!-- Cabeçalho -->
     <?php include('header.php') ?>
@@ -46,8 +47,8 @@ if(!isset($_SESSION['ordem'])){
     <!-- Resultados -->
     <section class="ordenar">
         <div class="dropdown">
-            <button id="btn-ordem" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Ordenar por:
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-filter"></i> Ordenar por: <span id="btn-ordem"></span>
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item ordena-item" href="" onclick="searchProducts('novo')">Mais novos</a></li>
@@ -57,6 +58,7 @@ if(!isset($_SESSION['ordem'])){
         </div>
     </section>
 
+
     <!-- RESULTADOS -->
     <section class="resultados">
 
@@ -64,10 +66,11 @@ if(!isset($_SESSION['ordem'])){
             <h2>Resultados (<?php echo $resultado->num_rows ?>) </h2>
         </div>
 
+        <!-- Cards de produtos -->
         <div class="produtos" id="produto">
             
         </div>
-
+        
     </section>
 
 </body>
@@ -95,7 +98,7 @@ if(!isset($_SESSION['ordem'])){
                 list[1].classList.add("selecionaOrdem")
                 list[0].classList.remove("selecionaOrdem")
                 list[2].classList.remove("selecionaOrdem")
-                document.getElementById('btn-ordem').textContent = "Ordenar por: Alfabética";
+                document.getElementById('btn-ordem').textContent = "Alfabética";
                 
                 
                 break;
@@ -104,7 +107,7 @@ if(!isset($_SESSION['ordem'])){
                 list[0].classList.remove("selecionaOrdem")
                 list[2].classList.add("selecionaOrdem")
                 list[1].classList.remove("selecionaOrdem")
-                document.getElementById('btn-ordem').textContent = "Ordenar por: Confiabilidade";
+                document.getElementById('btn-ordem').textContent = "Confiabilidade";
 
                 
                 break;
@@ -114,7 +117,7 @@ if(!isset($_SESSION['ordem'])){
                 list[1].classList.remove("selecionaOrdem")
                 list[2].classList.remove("selecionaOrdem")
                 list[0].classList.add("selecionaOrdem")
-                document.getElementById('btn-ordem').textContent = "Ordenar por: Mais novos";
+                document.getElementById('btn-ordem').textContent = "Mais novos";
 
                 break;
         }
@@ -139,10 +142,6 @@ if(!isset($_SESSION['ordem'])){
     }
     searchProducts('<?php echo $_SESSION['ordem']; ?>');
 
-    // $(document).ready(function() {
-    //     // Carregar resultados iniciais se houver uma busca prévia
-    //     searchProducts();
-    // });
 
     
 </script>

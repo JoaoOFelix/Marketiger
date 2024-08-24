@@ -47,3 +47,17 @@
 .botoes>*:hover {
     background-color: hsl(183, 38%, 60%)
 }
+
+
+.foto {
+    height: 400px;
+    width: 400px;
+    border: 1px rgba(117, 117, 117, 0.2) solid;
+    border-radius: 360%;
+    overflow: hidden;
+}
+
+.foto>img {
+    height: 400px;
+    width: 400px;
+}

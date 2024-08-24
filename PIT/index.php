@@ -7,12 +7,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Market Tiger</title>
     <link rel="stylesheet" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-    <!-- Titulo -->
+    <!-- Erro login -->
+    <div class="erro-login"></div>
 
+
+    <!-- Conteúdo principal -->
     <main>
 
         <div class="title">
@@ -33,26 +37,24 @@
                     <label for="inputSenha">Senha</label>
                     <input type="password" name="usuariosenha" class="form-control" id="inputSenha" required>
                 </div>
-            </div>    
+            </div>
 
-                <div class="buttons">
+            <div class="buttons">
 
-                    <button type="submit" class="btn btn-outline-primary mt-3" onclick="validacaoForm()">Login</button>
+                <button type="button" class="btn btn-outline-primary mt-3" onclick="validacaoForm()">Login</button>
 
-                    <a href="cadastro.php" class="btn btn-outline-primary mt-3">Cadastrar</a>
-                </div>
-            
+                <a href="cadastro.php" class="btn btn-outline-primary mt-3">Cadastrar</a>
+            </div>
+
         </form>
 
     </main>
 
-
-
 </body>
-
 <script>
-    function validacaoForm() {
 
+
+    function validacaoForm() {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         const forms = document.querySelectorAll('.needs-validation')
 
@@ -68,7 +70,29 @@
             }, false)
         })
 
-    }
-</script>
 
+
+        //AJAX
+        let login = document.getElementById("inputUsuario").value
+        let senha = document.getElementById("inputSenha").value
+        $.ajax({
+
+            url: 'login.php', // Mesma página
+            type: 'POST',
+            data: {
+                usuariologin: login,
+                usuariosenha: senha,
+                ajax: 1
+            },
+            success: function(response) {
+                if(response == "sucesso"){
+                    window.location.href = "principal.php";
+                } else {
+                    $(".erro-login").html(response);
+                }
+            }
+        });
+    }
+
+</script>
 </html>

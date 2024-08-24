@@ -19,6 +19,14 @@ $perfil_id = $_GET['id_perfil'];
 $sql = "SELECT * FROM cadastro WHERE id = $perfil_id";
 $resultado = $conn->query($sql);
 
+if ($resultado->num_rows == 0) {
+?>
+    <div class="alert alert-danger erro-cadastro" role="alert">
+        ERRO! Esse perfil não existe e/ou foi excluído.
+    </div>
+<?php
+}
+
 $perfil = $resultado->fetch_assoc();
 
 
@@ -49,6 +57,7 @@ $comentado = $conn->query($comentarios);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="stylesheet" href="css/cabecalho.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
 </head>
 
 <body>
@@ -58,23 +67,20 @@ $comentado = $conn->query($comentarios);
 
 
 
-
-
     <section id="principal">
         <div class="titulo">
             <h2><b><?php echo $perfil['usuario'] ?></b></h2>
         </div>
 
-
         <div class="formulario">
 
             <div class="foto-perfil">
                 <img src="<?php
-                            
+
                             if (!empty($perfil['linkFoto'])) {
                                 echo $fotoPerfil['linkFoto'];
                             } else {
-                                echo "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKAyHUwfu-mtzTdTBMpWWBCWbk7YEBTx2GOw&s";
+                                echo "images/no-user.png";
                             }
 
                             ?>" alt="">
@@ -118,17 +124,21 @@ $comentado = $conn->query($comentarios);
                     <div class="card m-3">
 
                         <picture>
-                            <img src="<?php echo $produto['link-img'] ?>" class="card-img-top" alt="produto">
+                            <img src="<?php echo $produto['link-img'] ?>" 
+                            class="card-img-top"
+                            onerror="this.src='images/no-image.svg'">
                         </picture>
 
                         <div class="card-body">
 
-                            <h5 class="card-title"><?php echo $produto['produto'] ?> <?php
-                                                                                        if ($i <= 3) {
-                                                                                        ?>
+                            <h5 class="card-title">
+                                <?php echo $produto['produto'] ?>
+                                <?php
+                                if ($i <= 3) {
+                                ?>
                                     <span class="badge text-bg-danger">Novo</span>
                                 <?php
-                                                                                        }
+                                }
                                 ?>
                             </h5>
 
@@ -175,7 +185,7 @@ $comentado = $conn->query($comentarios);
                                             if (!empty($comentario['linkFoto'])) {
                                                 echo $comentario['linkFoto'];
                                             } else {
-                                                echo "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKAyHUwfu-mtzTdTBMpWWBCWbk7YEBTx2GOw&s";
+                                                echo "images/no-user.png";
                                             }
 
                                             ?>">
@@ -192,9 +202,7 @@ $comentado = $conn->query($comentarios);
                                 <form action="deletecomment.php" method="post">
                                     <input type="hidden" name="id_item" value="<?php echo $perfil_id ?>">
                                     <button class="btn-excluir" type="submit" name="valor" value="<?php echo $comentario['id'] ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-                                        </svg>
+                                        <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                 </form>
                             <?php } ?>
@@ -219,16 +227,14 @@ $comentado = $conn->query($comentarios);
             <div>
                 <input type="hidden" name="id_item" value="<?php echo $perfil_id ?>">
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="comentario"></textarea>
+                    <textarea class="form-control" placeholder="Comente aqui" id="floatingTextarea" name="comentario"></textarea>
                     <label for="floatingTextarea">Comentário</label>
                 </div>
 
                 <button type="submit" class="btn btn-primary mt-3">Comentar</button>
             </div>
         </form>
-
     </section>
-
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

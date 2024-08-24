@@ -1,7 +1,11 @@
 <?php
+
 $fotoHeader = "SELECT linkFoto FROM cadastro WHERE id = $id_usuario";
+
 $bole = $conn->query($fotoHeader);
+
 $imgPerfil = $bole->fetch_assoc();
+
 ?>
 <header class="cabecalho">
 
@@ -29,7 +33,7 @@ $imgPerfil = $bole->fetch_assoc();
                 if (!empty($imgPerfil['linkFoto'])){
                     echo $imgPerfil['linkFoto'];
                 } else {
-                    echo "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKAyHUwfu-mtzTdTBMpWWBCWbk7YEBTx2GOw&s";
+                    echo "images/no-user.png";
                 }
                 ?>
                 " alt="">

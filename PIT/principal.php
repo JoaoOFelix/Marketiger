@@ -67,7 +67,7 @@ $resultadoConf = $conn->query($sqlConf);
                     <div class="card m-3">
                         
                         <picture>
-                            <img src="<?php echo $produto['link-img'] ?>" class="card-img-top" alt="produto">
+                            <img src="<?php echo $produto['link-img'] ?>" class="card-img-top">
                         </picture>
                         
 

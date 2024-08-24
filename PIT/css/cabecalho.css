@@ -2,7 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Dm-sans */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@font-face {
+    font-family: "DM Sans";
+    src: url("../fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf");
+}
+
+/* Montserrat */
+@font-face {
+    font-family: "Montserrat";
+    src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
 
 * {
     box-sizing: border-box;
@@ -56,7 +65,7 @@ body {
     transition: .1s ease-out;
 }
 
-.btn-sair>a:hover {
+.btn-sair>*:hover {
     background-color: rgb(255, 32, 32) !important;
     color: white;
 }
@@ -82,11 +91,30 @@ body {
     padding: 0;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid rgba(46, 46, 46, 0.25);
+    border: 1px rgba(117, 117, 117, 0.2) solid;
 }
 #botaoperfil>img {
     height: 50px;
     width: 50px;
     background-color: white;
     aspect-ratio: 1/1;
+}
+
+/* Loading placeholder */
+
+img{
+    animation: loading infinite 3s;
+    background: darkgray;
+    background: linear-gradient(to right, #eeeeee 10%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+}
+
+
+@keyframes loading{
+    0%{
+        background-position: -380px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
 }

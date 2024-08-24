@@ -2,8 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Dm-sans */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@font-face {
+    font-family: "DM Sans";
+    src: url("../fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf");
+}
 
+/* Montserrat */
+@font-face {
+    font-family: "Montserrat";
+    src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
 
 * {
     box-sizing: border-box;
@@ -12,7 +20,7 @@
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Montserrat", sans-serif;
     background-color: #FBF9F1;
     height: 100vh;
     display: flex;
@@ -23,6 +31,9 @@ body {
 
 .title {
     margin-bottom: 60px;
+}
+.title>h1 {
+    font-weight: 600;
 }
 
 
@@ -65,4 +76,10 @@ body {
 
 .btn:hover {
     background-color: hsl(183, 38%, 60%)
+}
+
+.erro-login {
+    position: absolute;
+    top: 5%;
+    margin: 0 auto;
 }

@@ -72,3 +72,9 @@ body {
 .btn:hover {
     background-color: hsl(183, 38%, 60%)
 }
+
+.erro-cadastro {
+    position: absolute;
+    top: 5%;
+    margin: 0 auto;
+}

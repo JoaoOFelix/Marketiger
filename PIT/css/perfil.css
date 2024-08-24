@@ -176,16 +176,12 @@ picture {
 .foto-comentario {
     height: 40px;
     width: 40px !important;
-    background-color: #0d6efd;
     background-size: cover;
     background-position: center;
     border-radius: 30px;
     overflow: hidden;
     transition: .6s;
-    border: 1px solid black;
-}
-.foto-comentario:hover {
-    background-size: 130%;
+    border: 1px rgba(117, 117, 117, 0.2) solid;
 }
 
 .foto-comentario>img {
@@ -199,13 +195,13 @@ picture {
     border: none;
 }
 
-.btn-excluir svg {
-    height: 25px;
+.btn-excluir i {
+    font-size: 25px;
     transition: .15s;
 }
 
-.btn-excluir svg:hover {
-    fill: red;
+.btn-excluir i:hover {
+    color: red;
 }
 
 .texto-comentario {
@@ -223,7 +219,7 @@ picture {
     margin: 0 auto;
     margin-bottom: 30px;
     border-radius: 360px;
-    border: 2px solid rgba(0, 0, 0, 0.25);
+    border: 1px rgba(117, 117, 117, 0.2) solid;
     overflow: hidden;
 }
 
@@ -236,5 +232,11 @@ picture {
     width: fit-content;
 }
 
+/*  */
 
+.erro-cadastro {
+    text-align: center;
+    margin: 0;
+    border-radius: 0;
+}
 

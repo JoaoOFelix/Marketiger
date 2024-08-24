@@ -1,43 +1,38 @@
 <?php
 include('conexao.php');
 
-if(!isset($_SESSION)){
-    session_start();
-  }
+if (!isset($_SESSION)) {
+  session_start();
+}
 
-  $usuario = $_POST['usuariologin'];
+$usuario = $_POST['usuariologin'];
+$senha = $_POST['usuariosenha'];
 
-  $senha = $_POST['usuariosenha'];
+//Criar o comando
+$sql = "SELECT * FROM cadastro WHERE usuario = '$usuario' AND senha = '$senha'";
 
-  
+//executar o comando
+$resultado = $conn->query($sql);
 
-  //Criar o comando
-  $sql = "SELECT * FROM cadastro WHERE usuario = '$usuario' AND senha = '$senha'";
+$quantidade = $resultado->num_rows;
 
-  //executar o comando
-  $resultado = $conn->query($sql);
-
-  $quantidade = $resultado->num_rows;
-
-  if($quantidade == 1){
+if ($quantidade == 1) {
 
   $user = $resultado->fetch_assoc();
 
-  
 
   $_SESSION['id'] = $user['id'];
   $_SESSION['usuario'] = $user['usuario'];
 
-  header("Location: principal.php");
-
+  echo "sucesso";
 } else {
- 
+
+
 ?>
+  <div class="alert alert-danger erro-cadastro" role="alert">
+    Erro ao logar. Usuário ou senha incorretos.
+  </div>
 
-<div class="alert alert-danger" role="alert">
-  Falha ao logar! E-mail ou senha incorretos. <a href="cadastro.php" class="alert-link">Cadastre-se aqui!</a>
-</div>
-
-<?php
-}
+<?php 
+} 
 ?>

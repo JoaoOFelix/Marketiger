@@ -49,6 +49,9 @@ if (!isset($_SESSION['id'])) {
             <h2>Bem-vindo <b><?php echo $usuario['usuario'] ?></b></h2>
         </div>
 
+        <div class="foto">
+            <img id="nova-img" src="<?php echo $usuario['linkFoto'] ?>" class="rounded" alt="...">
+        </div>
 
         <div class="formulario">
             <form action="updateperfil.php" method="post" class="needs-validation" novalidate>
@@ -66,7 +69,7 @@ if (!isset($_SESSION['id'])) {
 
                     <div>
                         <label for="inputTelefone">Telefone</label>
-                        <input type="number" name="telefone" class="form-control" id="inputTelefone" value="<?php echo $usuario['telefone'] ?>" required>
+                        <input type="text" name="telefone" class="form-control" id="inputTelefone" value="<?php echo $usuario['telefone'] ?>" required maxlength="14">
                     </div>
 
                     <div>
@@ -76,7 +79,7 @@ if (!isset($_SESSION['id'])) {
 
                     <div>
                         <label for="inputFoto">Link da foto de perfil</label>
-                        <input type="text" name="foto" class="form-control" id="inputFoto" value="<?php echo $usuario['linkFoto'] ?>" required>
+                        <input id="link" type="text" name="foto" class="form-control" id="inputFoto" onchange="atualizafoto()" value="<?php echo $usuario['linkFoto'] ?>" required>
                     </div>
 
 
@@ -116,5 +119,13 @@ if (!isset($_SESSION['id'])) {
         })
 
     }
+
+    const novaFoto = document.getElementById("nova-img")
+    var link
+function atualizafoto(){
+    link = document.getElementById("link").value
+
+    novaFoto.src = link
+}
 </script>
 </html>

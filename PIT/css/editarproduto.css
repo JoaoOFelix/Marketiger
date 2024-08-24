@@ -4,7 +4,7 @@ main {
     display: flex;
     margin: 60px auto;
     justify-content: space-evenly;
-    background-color: #e0e0de;
+    background-color: #dbe5da;
     border: 1px rgba(182, 182, 182, 0.205) solid;
     border-radius: 6px;
     padding: 60px;

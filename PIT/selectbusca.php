@@ -52,11 +52,13 @@ if ($resultado->num_rows > 0) {
         ?>
             <div class="card m-3">
                 <picture>
-                    <img src="<?php echo $produto['link-img'] ?>" class="card-img-top" alt="produto">
+                    <img src="<?php echo $produto['link-img'] ?>"
+                     class="card-img-top"
+                     onerror="this.src='images/no-image.svg'">>
                 </picture>
                 
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $produto['produto'] ?></h5>
+                    <h5 class="card-title placeholder-glow"><?php echo $produto['produto'] ?></h5>
                     <p class="card-text"><?php echo $produto['descricao'] ?></p>
                     <a href="perfil.php?id_perfil=<?php echo $produto['id_usuario'] ?>"><?php echo $produto['anunciante'] ?></a><br>
                     <a href="produto.php?id=<?php echo $produto['id'] ?>" class="btn btn-primary">Ver Produto</a>

@@ -26,9 +26,12 @@ if (!isset($_SESSION['id'])) {
     <?php
     $id_usuario = $_SESSION['id'];
 
+
     if (isset($_GET['id'])) {
         $id = intval($_GET['id']);
     }
+
+
 
     //Criar o comando
     $sql = "SELECT * FROM produtos WHERE id = $id";
@@ -36,16 +39,41 @@ if (!isset($_SESSION['id'])) {
     //executar o comando
     $resultado = $conn->query($sql);
 
-    $item = $resultado->fetch_assoc();;
+    $item = $resultado->fetch_assoc();
     ?>
 
 
     <!-- Cabeçalho -->
     <?php include('header.php') ?>
 
+
+    <!-- Conteudo principal -->
     <main>
+
+        <?php
+        if ($id_usuario == $item['id_usuario']) { ?>
+            <div class="btn-produto dropdown">
+                <button class="btn" type="button" data-bs-toggle="dropdown">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
+                    </svg>
+                </button>
+
+                <ul class="dropdown-menu">
+                    
+                    <li><a class="dropdown-item" href="editarproduto.php?id=<?php echo $id ?>">Editar produto</a></li>
+
+                    <li class="btn-sair"><button onclick="deletarProduto()" class="dropdown-item">Excluir produto</button></li>
+                </ul>
+            </div>
+        <?php }
+        ?>
+
+
         <section class="text-center">
-            <img src="<?php echo $item['link-img'] ?>" class="rounded" alt="...">
+            <img src="<?php echo $item['link-img'] ?>"
+             class="rounded"
+             onerror="this.src='images/no-image.svg'">
         </section>
 
         <section class="infos">
@@ -59,72 +87,68 @@ if (!isset($_SESSION['id'])) {
                 <?php echo $item['descricao'] ?>
             </p> <br>
 
-            
-            
 
-            <span>
-                Material: <?php echo $item['material'] ?>
-            </span><br>
-
-            <span>
-                Tamanho: <?php echo $item['tamanho'] ?>
-            </span><br>
-
-            <span>
-                Condição do produto: <?php echo $item['condicao'] ?>
-            </span><br>
 
             <div class="confiabilidade">
-                <div>
-                    <p>Confiabilidade</p>
+                <span>
+                    Confiabilidade:
+                </span>
+
+                <div class="progressbar-back">
+                    <div class="progressbar-color">
+
+                    </div>
                 </div>
-                <div id="container"></div>
+
+                <span class="conf-value"><b><?php echo $item['confiabilidade'] ?>%</b></span>
             </div>
 
             <span>
-                Anunciante: <a href="perfil.php?id_perfil=<?php echo $item['id_usuario'] ?>"><?php echo $item['anunciante'] ?> </a> 
+                Material: <b><?php echo $item['material'] ?></b>
+            </span><br>
+
+            <span>
+                Tamanho: <b><?php echo $item['tamanho'] ?></b>
+            </span><br>
+
+            <span>
+                Condição do produto: <b><?php echo $item['condicao'] ?></b>
+            </span><br>
+
+
+
+            <span>
+                Anunciante: <a href="perfil.php?id_perfil=<?php echo $item['id_usuario'] ?>"><?php echo $item['anunciante'] ?> </a>
             </span>
         </section>
-        
+
     </main>
-    
+
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <!-- Script barra de progresso -->
 <!-- https://stackoverflow.com/questions/42477756/build-semi-circle-progress-bar-with-round-corners-and-shadow-in-java-script-and -->
-<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js"></script>
+<!-- <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js"></script> -->
+
 <script>
-    var bar = new ProgressBar.SemiCircle(container, {
-        strokeWidth: 5,
-        color: '#15ff00',
-        trailColor: '#eee',
-        trailWidth: 5,
-        easing: 'easeInOut',
-        duration: 2400,
-        svgStyle: null,
-        text: {
-            value: '',
-            alignToBottom: false
-        },
+    const colorBar = document.getElementsByClassName('progressbar-color')[0];
+    var confiabilidade = "<?php echo $item['confiabilidade'] ?>";
 
-        // Set default step function for all animate calls
-        step: (state, bar) => {
-            bar.path.setAttribute('stroke', state.color);
-            var value = Math.round(bar.value() * 100);
-            if (value === 0) {
-                bar.setText('');
-            } else {
-                bar.setText(value + "%");
-            }
 
-            bar.text.style.color = state.color;
+    colorBar.style.width = `${confiabilidade}%`
+
+
+    function deletarProduto() {
+        var txt;
+        if (confirm("Tem certeza que quer deletar?")) {
+            window.location.assign("deleteproduto.php?id=<?php echo $id ?>&perfil=<?php echo $id_usuario ?>");
+        } else {
+            window.alert("Ação cancelada!")
+            
         }
-    });
-
-    bar.text.style.fontSize = '3rem';
-
-    bar.animate(<?php echo $item['confiabilidade']/100 ?>); // Number from 0.0 to 1.0
+        
+    }
 </script>
 
 </html>
