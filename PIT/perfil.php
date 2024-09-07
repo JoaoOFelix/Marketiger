@@ -72,6 +72,7 @@ $comentado = $conn->query($comentarios);
             <h2><b><?php echo $perfil['usuario'] ?></b></h2>
         </div>
 
+
         <div class="formulario">
 
             <div class="foto-perfil">

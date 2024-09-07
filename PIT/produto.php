@@ -119,7 +119,12 @@ if (!isset($_SESSION['id'])) {
 
             <span>
                 Anunciante: <a href="perfil.php?id_perfil=<?php echo $item['id_usuario'] ?>"><?php echo $item['anunciante'] ?> </a>
-            </span>
+            </span> <br> <br>
+
+            <form action="adicionarcarrinho.php" method="POST">
+                <input type="hidden" name="id_produto" value="<?= $id ?>">
+                <input type="submit" class="btn btn-success" name="tipo" value="Adicionar ao carrinho">
+            </form>
         </section>
 
     </main>

@@ -6,6 +6,12 @@ $bole = $conn->query($fotoHeader);
 
 $imgPerfil = $bole->fetch_assoc();
 
+if (isset($_SESSION['carrinho'])){
+    $itens_carrinho = count($_SESSION['carrinho']);
+}
+
+
+
 ?>
 <header class="cabecalho">
 
@@ -25,17 +31,35 @@ $imgPerfil = $bole->fetch_assoc();
 
     <div class="login">
 
+        <div class="carrinho">
+            <a href="carrinho.php" type="button" class="btn btn-success position-relative">
+                Carrinho
+                <?php 
+                if (isset($_SESSION['carrinho'])){
+                    if ($itens_carrinho > 0 ){ ?>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger not-carrinho">
+                            <?= $itens_carrinho ?>
+                        </span>
+                        <?php
+                        } 
+                }
+                
+                ?>
+            </a>
+        </div>
+
+
         <a class="btn btn-danger" href="cadastroproduto.php">Anunciar</a>
 
         <div class="dropdown">
             <button class="btn btn-secondary" type="button" id="botaoperfil" data-bs-toggle="dropdown">
-                <img src="<?php 
-                if (!empty($imgPerfil['linkFoto'])){
-                    echo $imgPerfil['linkFoto'];
-                } else {
-                    echo "images/no-user.png";
-                }
-                ?>
+                <img src="<?php
+                            if (!empty($imgPerfil['linkFoto'])) {
+                                echo $imgPerfil['linkFoto'];
+                            } else {
+                                echo "images/no-user.png";
+                            }
+                            ?>
                 " alt="">
             </button>
 
@@ -45,7 +69,7 @@ $imgPerfil = $bole->fetch_assoc();
                 <li class="btn-sair"><a href="logout.php" class="dropdown-item">Sair</a></li>
             </ul>
         </div>
-        
+
     </div>
 
 </header>
