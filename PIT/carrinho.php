@@ -12,10 +12,11 @@ if (!isset($_SESSION['id'])) {
 $id_usuario = $_SESSION['id'];
 $usuario = $_SESSION['usuario'];
 
-if (isset($_SESSION['carrinho'])){
+if (isset($_SESSION['carrinho'])) {
     $carrinho = $_SESSION['carrinho'];
 }
 
+$precoTotal = "0.00";
 
 ?>
 <!DOCTYPE html>
@@ -48,57 +49,73 @@ if (isset($_SESSION['carrinho'])){
 
         <section class="lista-itens">
             <?php
-            if(isset($carrinho)){
-            if (count($carrinho) > 0) {
-                $i = 0;
-                // Iterar sobre os resultados e exibi-los
-                while ($i < count($carrinho)) {
-                    
-                    $sql = "SELECT * FROM `produtos` WHERE `id` = $carrinho[$i]";
-                    $consulta = $conn->query($sql);
-                    $produto = $consulta->fetch_assoc();
+            if (isset($carrinho)) {
+                if (count($carrinho) > 0) {
+                    $i = 0;
+                    // Iterar sobre os resultados e exibi-los
+                    while ($i < count($carrinho)) {
+
+                        $sql = "SELECT * FROM `produtos` WHERE `id` = $carrinho[$i]";
+                        $consulta = $conn->query($sql);
+                        $produto = $consulta->fetch_assoc();
+                        $precoTotal += $produto["preco"];
 
             ?>
-                    <div class="item">
-                        <div class="foto-produto">
-                            <a href="<?= 'produto.php?id=',$produto["id"] ?>">
-                            <img src="<?php echo $produto['link-img'] ?>"
-                                class="card-img-top"
-                                onerror="this.src='images/no-image.svg'"></a>
+                        <div class="item">
+                            <div class="foto-produto">
+                                <a href="<?= 'produto.php?id=', $produto["id"] ?>">
+                                    <img src="<?php echo $produto['link-img'] ?>"
+                                        class="card-img-top"
+                                        onerror="this.src='images/no-image.svg'"></a>
+                            </div>
+
+                            <div class="descricao">
+                                <h2><?php echo $produto['produto'] ?></h2>
+                                <p><?php echo $produto['descricao'] ?></p>
+                            </div>
+
+
+                            <div class="infos">
+                                <span>Preço: R$<?= $produto['preco'] ?></span>
+                                <p>Confiabilidade</p>
+                            </div>
+
+
+                            <div class="botao-remover">
+                                <form action="removercarrinho.php" method="POST">
+                                    <input type="hidden" name="id_remove" value="<?= $produto['id'] ?>">
+                                    <button type="submit" class="lixeira" value="remover" name="tipo">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+
+                                </form>
+                            </div>
                         </div>
-
-                        <div class="descricao">
-                            <h2><?php echo $produto['produto'] ?></h2>
-                            <p><?php echo $produto['descricao'] ?></p>
-                        </div>
-
-
-                        <div class="infos">
-                            <span>Preço: R$300</span>
-                            <p>Confiabilidade</p>
-                        </div>
-
-
-                        <div class="botao-remover">
-                            <form action="removercarrinho.php" method="POST">
-                                <input type="hidden" name="id_remove" value="<?= $produto['id'] ?>">
-                                <button type="submit" class="lixeira" value="remover" name="tipo">
-                                    <i class="fa-regular fa-trash-can"></i>
-                                </button>
-                                
-                            </form>
-                        </div>
-                    </div>
 
             <?php
-                    $i++;
+                        $i++;
+                    }
+                } else {
+                    echo "Nenhum produto no carrinho.";
                 }
             } else {
                 echo "Nenhum produto no carrinho.";
-            }} else {
-                echo "Nenhum produto no carrinho.";}
+            }
 
             ?>
+        </section>
+
+        <section class="pagamento">
+            <form action="pagamento.php" method="post">
+                <div>
+                    <p>Total: R$<?= $precoTotal ?></p>
+
+                    <div>
+                        <input type="hidden" name="preco" value="<?= $precoTotal ?>">
+                        <button type="submit" class="btn btn-success">Finalizar compra</button>
+                    </div>
+                </div>
+            </form>
         </section>
     </main>
 

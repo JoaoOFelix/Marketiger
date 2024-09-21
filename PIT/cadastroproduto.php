@@ -107,6 +107,11 @@ if (!isset($_SESSION['id'])) {
                 <input type="text" name="img" class="form-control" id="inputLink" onchange="atualizafoto()">
             </div>
 
+            <div>
+                <label for="inputPreco">Preço estimado</label>
+                <input type="text" name="preco" class="form-control" id="inputPreco">
+            </div>
+
             <!-- Botões -->
             <div>
                 <button type="submit" class="btn btn-success mt-3" onclick="validacaoForm()">Cadastrar produto</button>

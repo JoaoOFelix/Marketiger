@@ -115,6 +115,9 @@ if (!isset($_SESSION['id'])) {
                 Condição do produto: <b><?php echo $item['condicao'] ?></b>
             </span><br>
 
+            <span>
+                Preço estimado: <b><?php echo 'R$'.$item['preco'] ?></b>
+            </span><br>
 
 
             <span>

@@ -40,7 +40,9 @@ if (!isset($_SESSION['id'])) {
     $material = $_POST['material'];
     $tamanho = $_POST['tamanho'];
     $condicao = $_POST['condicao'];
+    $preco = $_POST['preco'];
     $imagem = $_POST['img'];
+
 
 
     $anunciante = $_SESSION['usuario'];
@@ -95,7 +97,9 @@ if (!isset($_SESSION['id'])) {
             '$material',
             '$tamanho',
             '$condicao',
-            '$imagem')";
+            '$preco',
+            '$imagem'
+            )";
 
         //executar o comando
         $resultado = $conn->query($sql);

@@ -19,6 +19,15 @@
     justify-items: center;
 }
 
+.pagamento {
+
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 70%;
+    text-align: center;
+}
+
+
 .item {
     background-color: rgba(190, 190, 190, 0.3);
     border-radius: 7px;
