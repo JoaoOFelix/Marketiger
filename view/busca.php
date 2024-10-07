@@ -80,7 +80,7 @@ if (isset($_GET['pag'])) {
     <title>Market Tiger</title>
     <link rel="stylesheet" href="../resources/css/busca.css">
     <link rel="stylesheet" href="../resources/css/cabecalho.css">
-    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../resources/fontawesome/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 </head>
