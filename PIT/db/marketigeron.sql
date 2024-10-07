@@ -3,6 +3,9 @@
 -- Banco de dados: `marketiger`
 --
 
+CREATE DATABASE marketiger;
+USE marketiger;
+
 -- --------------------------------------------------------
 
 --
