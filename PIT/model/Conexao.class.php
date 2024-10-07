@@ -3,7 +3,7 @@
 DEFINE('HOSTNAME', 'localhost');
 DEFINE('USER', 'root');
 DEFINE('PASSWD', '');
-DEFINE('DATABASE', 'marketbackup');
+DEFINE('DATABASE', 'marketiger');
 
 class Conexao
 {
