@@ -71,7 +71,7 @@ $precoTotal = "0.00";
                                 <a href="<?= 'produto.php?id=', $produto["id"] ?>">
                                     <img src="<?php echo $produto['link-img'] ?>"
                                         class="card-img-top"
-                                        onerror="this.src='images/no-image.svg'"></a>
+                                        onerror="this.src='../resources/images/no-image.svg'"></a>
                             </div>
 
                             <div class="descricao">
