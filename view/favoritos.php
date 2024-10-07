@@ -59,7 +59,7 @@ $favoritos = $Cadastro->select_favoritos($id_usuario);
                         <picture>
                             <img src="<?= $resultado['link-img'] ?>"
                                 class="card-img-top"
-                                onerror="this.src='images/no-image.svg'">>
+                                onerror="this.src='../resources/images/no-image.svg'">>
                         </picture>
 
                         <div class="card-body">
