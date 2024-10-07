@@ -64,7 +64,7 @@ $produtos_user = $Cadastro->produtos_perfil($perfil_id);
                             if (!empty($perfil['linkFoto'])) {
                                 echo $fotoPerfil['linkFoto'];
                             } else {
-                                echo "images/no-user.png";
+                                echo "../resources/images/no-user.png";
                             }
 
                             ?>" alt="">
