@@ -1,0 +1,12 @@
+.finalizacao {
+    margin: 50px auto;
+    text-align: center;
+    background-color: rgb(238, 238, 238);
+    padding: 50px;
+    width: 50%;
+}
+
+.check-img {
+    width: 400px;
+    margin-bottom: 60px;
+}

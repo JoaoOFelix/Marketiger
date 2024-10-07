@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Market Tiger</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="resources/css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
@@ -25,7 +25,7 @@
 
 
         <!-- Login Form -->
-        <form class="login" action="login.php" method="post" class="needs-validation" novalidate>
+        <form class="login" action="controller/login.php" method="post" class="needs-validation" novalidate>
             <div id="principal">
 
                 <div>
@@ -43,7 +43,7 @@
 
                 <button type="button" class="btn btn-outline-primary mt-3" onclick="validacaoForm()">Login</button>
 
-                <a href="cadastro.php" class="btn btn-outline-primary mt-3">Cadastrar</a>
+                <a href="view/cadastro.php" class="btn btn-outline-primary mt-3">Cadastrar</a>
             </div>
 
         </form>
@@ -77,7 +77,7 @@
         let senha = document.getElementById("inputSenha").value
         $.ajax({
 
-            url: 'login.php', // Mesma página
+            url: 'controller/login.php', // Mesma página
             type: 'POST',
             data: {
                 usuariologin: login,
@@ -86,7 +86,7 @@
             },
             success: function(response) {
                 if(response == "sucesso"){
-                    window.location.href = "principal.php";
+                    window.location.href = "view/principal.php";
                 } else {
                     $(".erro-login").html(response);
                 }
