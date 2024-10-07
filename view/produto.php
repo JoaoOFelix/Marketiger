@@ -79,7 +79,7 @@ $item = $Cadastro->select_produto($id_produto);
         <section class="text-center">
             <img src="<?= $item['link-img'] ?>"
                 class="rounded"
-                onerror="this.src='images/no-image.svg'">
+                onerror="this.src='../resources/images/no-image.svg'">
         </section>
 
         <section class="infos">
