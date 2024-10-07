@@ -14,8 +14,11 @@ if (!isset($_SESSION['id'])) {
 $id_usuario = $_SESSION['id'];
 $usuario = $_SESSION['usuario'];
 
+
 $busca = $_GET['busca'];
-$ordem = "";
+if(!isset($_SESSION['ordem'])){
+    $_SESSION['ordem'] = "";
+}
 
 //Url
 $urlAtual = basename($_SERVER['PHP_SELF']) . '?' . "busca=$busca";
